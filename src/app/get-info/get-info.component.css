@@ -1,0 +1,121 @@
+
+body{
+  margin: 0;
+  padding: 0;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+}
+
+
+li{
+  list-style: none;
+}
+
+.logo {
+  background-color: #151991;
+}
+
+.section-back-color  {
+  background-color: #F0F0F4;
+}
+
+.pay-fees-text  h1{
+  color: #151991;
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.student-number-text h2 {
+  color: #151991;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.student-number-text input{
+  width: 25%;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid #000;
+  padding-left: 10px;
+}
+
+.student-number-text .btn-primary {
+  background-color: #3C47DC;
+  border-color: #3C47DC;
+  font-weight: 600;
+  font-size: 17px;
+  border-radius: 20px;
+}
+
+.section-back-white{
+  background-color: #fff;
+}
+
+.student-detail{
+  text-transform: uppercase;
+}
+
+.student-detail h5{
+  display: inline-block;
+  font-size: 16px;
+  margin: 0;
+}
+
+.student-detail span{
+  float: right;
+  clear: both;
+  font-weight: 700;
+}
+
+.section-back-white p{
+  font-size: 16px;
+  font-weight: 500;
+  padding-left: 40px;
+}
+
+.fees h2 {
+  color: #151991;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.fees-detail h3{
+  font-size: 18px ;
+}
+
+.fees-detail h4{
+  font-size: 16px ;
+}
+
+
+table, th, td {
+  border: 1px solid #000;
+  border-collapse: collapse;
+  font-weight: 700;
+  padding: 15px;
+}
+
+table{
+  display: inline-block;
+  border: none;
+
+}
+
+th{
+  text-align: left !important ;
+}
+
+.table {
+  text-align: right !important;
+}
+
+.table .btn-primary {
+  font-weight: 600;
+  background-color: #3C47DC;
+  border-color: #3C47DC;
+  margin: 0 7rem;
+}
+
