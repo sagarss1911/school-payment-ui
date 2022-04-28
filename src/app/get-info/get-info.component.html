@@ -24,18 +24,27 @@
   <div class="container">
 
       <div class="section-back-color student-number-text text-center py-3">
+
           <h2 class="pb-3 m-0">Student DR Number</h2>
           <form #f="ngForm" novalidate autocomplete="off" *ngIf="info_obj">
 
+            <div class="row ">
+                <div class="col-6" style="text-align: -moz-right;">
+                    <input type="text" class="form-control" id="stu_dr_no" name="stu_dr_no" placeholder="Enter DR Number" [disabled]="lockDrNumber" #stu_dr_no="ngModel" [(ngModel)]="info_obj.stu_dr_no" required />
+                        <div class="alert alert-danger " *ngIf="stu_dr_no.touched && stu_dr_no.invalid">
+                            <p style="text-align: center;">Student DR Number can't be blank.</p>
+                        </div>
+                </div>
 
+                <div class="col-6">
+                    <re-captcha (resolved)="resolved($event)" #captchaRef="reCaptcha" (error)="errorCaptcha($event)" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></re-captcha>
+                </div>
 
-          <span><input type="text" class="form-control" id="stu_dr_no" name="stu_dr_no" placeholder="Enter DR Number" [disabled]="lockDrNumber" #stu_dr_no="ngModel" [(ngModel)]="info_obj.stu_dr_no" required />
-            <div class="alert alert-danger" *ngIf="stu_dr_no.touched && stu_dr_no.invalid">
-                <p>Student DR Number can't be blank.</p>
+                <div class="col-12" style="margin-top: 15px;">
+                    <button type="submit" class="btn btn-primary ms-2" [disabled]="f.invalid || !info_obj.stu_dr_no || !captcha.validated" (click)="sendOTP()">Get Detail</button>
+                </div>
             </div>
-            <re-captcha (resolved)="resolved($event)" #captchaRef="reCaptcha" (error)="errorCaptcha($event)" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></re-captcha>
-            <button type="submit" class="btn btn-primary ms-2" [disabled]="f.invalid || !info_obj.stu_dr_no || !captcha.validated" (click)="sendOTP()">Get Detail</button>
-            </span>
+
           </form>
       </div>
 
@@ -181,7 +190,7 @@
               <div class="row  px-3" *ngFor="let summary of info_Detail?.feesSummary; let i=index">
 
                   <div class="col-1">
-                    <input *ngIf="summary.paid == 0" type="checkbox" [(ngModel)]="summary.isSelected" name="list_name" value="{{summary.feeDate}}" (change)="isAllSelected()" />
+                    <input type="checkbox" [(ngModel)]="summary.isSelected" name="list_name" value="{{summary.feeDate}}" (change)="isAllSelected()" />
                   </div>
 
                   <div class="col-3">
@@ -208,12 +217,14 @@
               </div>
 
 
+            </div>
 
-              <div class="col-12">
+            <div class="row pt-2">
+              <div class="col-6 pt-2"  style="text-align: -moz-left;">
                 <button type="submit" class="btn btn-primary" [disabled]="!selectedTotalPayment" (click)="initiatePayment()">Pay Now <br> {{selectedTotalPayment ? selectedTotalPayment : ''}}</button>
               </div>
 
-              <div class="col-12">
+              <div class="col-6">
                   <div class="table">
                       <table>
                           <tbody>
@@ -247,7 +258,7 @@
 
                   </div>
 
-              </div>
+            </div>
 
 
 
