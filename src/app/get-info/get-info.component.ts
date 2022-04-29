@@ -21,7 +21,7 @@ export class GetInfoComponent implements OnInit {
   isMasterSel = false;
   checkedCategoryList:any
   selectedTotalPayment = 0
-
+  error = ""
   @ViewChild('captchaRef') captchaRef: RecaptchaComponent;
   constructor(
     private getTextService: GetTextService,
@@ -98,6 +98,7 @@ export class GetInfoComponent implements OnInit {
     })
   }
   getInfo() {
+    this.error = ""
     let params = {
       stu_dr_no: this.info_obj.stu_dr_no
     }
@@ -111,7 +112,8 @@ export class GetInfoComponent implements OnInit {
       }
     }, (error) => {
       this.loading = false;
-      this.commonHelper.showError(error);
+      this.error = error
+      //this.commonHelper.showError(error);
     })
   }
 
