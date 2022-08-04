@@ -5,6 +5,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GetInfoComponent } from './get-info/get-info.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CommonHelper } from './helpers/common.helper';
@@ -12,11 +14,13 @@ import { DatePipe } from '@angular/common';
 import { ToastMessageService } from './services/toast-message.service';
 import { ToastMessageComponent } from './toast-message/toast-message.component';
 import { RecaptchaModule } from "ng-recaptcha";
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NgxLoadingModule } from 'ngx-loading';
 @NgModule({
   declarations: [
     AppComponent,
     GetInfoComponent,
-
+    CheckoutComponent,
     CommonHelper,
     ToastMessageComponent,
 
@@ -24,11 +28,13 @@ import { RecaptchaModule } from "ng-recaptcha";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgxLoadingModule.forRoot({}),
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RecaptchaModule
+    RecaptchaModule,
+    NgSelectModule
   ],
   exports: [],
   providers: [

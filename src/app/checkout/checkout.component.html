@@ -1,0 +1,74 @@
+
+<div class="top-logo">
+  <div class="logo text-center">
+    <img width="700px" class="img-fluid my-3" src="assets/Stewart-school-Cuttack-Logo-1-1.png"
+      alt="Stewart-school-Cuttack-Logo">
+  </div>
+
+</div>
+
+<div class="pay-fees mt-3">
+  <div class="container">
+
+    <div class="section-back-color pay-fees-text text-center">
+      <h1 class="py-2 m-0">PAY YOUR FEES</h1>
+
+      <div id="bd-sps"></div>
+    </div>
+
+  </div>
+</div>
+<div class="student-number mt-3">
+  <div class="container">
+
+    <div class="section-back-color student-number-text text-center py-3">
+
+      <h2 class="pb-3 m-0">Student DR Number</h2>
+      <form #f="ngForm" novalidate autocomplete="off" *ngIf="transaction_details">
+        <div class="row ">
+          <div class="col-2"></div>
+          <div class="col-4" style="text-align: -moz-right;">
+            <input type="text" class="form-control" id="Parent Name" name="Parent Name" placeholder="Enter Parent Name"
+            #parent_name="ngModel" [(ngModel)]="transaction_details.parent_name" required    oninput="this.value = this.value.replace(/[^a-z.A-Z,_,-]/g,'');"/>
+            <div class="alert alert-danger " *ngIf="parent_name.touched && parent_name.invalid">
+             <p style="text-align: center;">Parent Name can't be blank.</p>
+           </div>
+          </div>
+          <div class="col-4" style="text-align: -moz-right;">
+            <input type="tel" class="form-control" id="Parent Mobile No" name="Parent Mobile No" placeholder="Enter Parent Mobile No"
+            #parent_mobile_no="ngModel" [(ngModel)]="transaction_details.parent_mobile_no"  oninput="this.value = this.value.replace(/[^0-9]/g,'');" maxlength="10" required />
+            <div class="alert alert-danger " *ngIf="parent_mobile_no.touched && parent_mobile_no.invalid">
+             <p style="text-align: center;">Parent Mobile No can't be blank.</p>
+           </div>
+          </div>
+          <div class="col-2"></div>
+        </div>
+        <div class="row ">
+          <div class="col-2"></div>
+          <div class="col-4" style="text-align: -moz-right;">
+            <input type="email" class="form-control" id="Parent Email" name="Parent Email" placeholder="Enter Parent Email"
+            #parent_email="ngModel" [(ngModel)]="transaction_details.parent_email"  pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z-.]+$"  required />
+            <!-- <div class="alert alert-danger " *ngIf="parent_email.touched && parent_email.invalid">
+             <p style="text-align: center;">Parent Email can't be blank.</p>
+           </div> -->
+           <div class="alert alert-danger" *ngIf="parent_email.touched && parent_email.invalid">
+            <p style="text-align: center;" *ngIf="parent_email.errors.required">Email cannot be blank.</p>
+            <p style="text-align: center;" *ngIf="parent_email.errors.pattern">Please enter valid email.</p>
+        </div>
+          </div>
+
+          <div class="col-4 amount" >
+            Amount: {{transaction_details.total}}
+          </div>
+          <div class="col-2"></div>
+          <div class="col-12" style="margin-top: 15px;">
+            <button type="submit" class="btn btn-primary ms-2"
+              [disabled]="f.invalid || !transaction_details.parent_name || !transaction_details.parent_mobile_no || !transaction_details.parent_email" (click)="payNow()">Pay Now</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>

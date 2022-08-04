@@ -6,7 +6,9 @@ export const environment = {
   //url: "http://3.141.56.238:4000",
   production: false,
   url: "http://localhost:3000",
-  key:'12345'
+  key:'12345',
+  MerchantID:'STEWARTSCH',
+
 };
 
 /*

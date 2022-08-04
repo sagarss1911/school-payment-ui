@@ -121,6 +121,28 @@ th{
   margin: 0 7rem;
 }
 
-.student-number-text input {
-  width: 100% !important;
+.section-back-color {
+  display: flex;
+  height: 80vh;
+  align-items: center;
+  justify-content:center ;
+  flex-flow: column;
+}
+.student-number-text h2 {
+  color: #00CD00;
+  font-weight: 700;
+  font-size: 40px;
+}
+.student-number-text button {
+  background: #00CD00 ;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+   padding: 5px 25px;
+}
+
+.tnk {
+  font-size: 30px;
+  color: #151991;
+  font-weight: 600;
 }

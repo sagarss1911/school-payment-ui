@@ -1,11 +1,9 @@
-
-
-
-
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop:true,primaryColour:'#005eff',secondaryColour:'#005eff',tertiaryColour:'#005eff'}"></ngx-loading>
 
 <div class="top-logo">
   <div class="logo text-center">
-      <img width="700px" class="img-fluid my-3" src="assets/Stewart-school-Cuttack-Logo-1-1.png" alt="Stewart-school-Cuttack-Logo">
+    <img width="700px" class="img-fluid my-3" src="assets/Stewart-school-Cuttack-Logo-1-1.png"
+      alt="Stewart-school-Cuttack-Logo">
   </div>
 
 </div>
@@ -13,9 +11,10 @@
 <div class="pay-fees mt-3">
   <div class="container">
 
-      <div class="section-back-color pay-fees-text text-center">
-          <h1 class="py-2 m-0">PAY YOUR FEES</h1>
-      </div>
+    <div class="section-back-color pay-fees-text text-center">
+      <h1 class="py-2 m-0">PAY YOUR FEES</h1>
+      <div id="bd-sps"></div>
+    </div>
 
   </div>
 </div>
@@ -23,32 +22,52 @@
 <div class="student-number mt-3">
   <div class="container">
 
-      <div class="section-back-color student-number-text text-center py-3">
+    <div class="section-back-color student-number-text text-center py-3">
 
-          <h2 class="pb-3 m-0">Student DR Number</h2>
-          <form #f="ngForm" novalidate autocomplete="off" *ngIf="info_obj">
-
-            <div class="row ">
-                <div class="col-6" style="text-align: -moz-right;">
-                    <input type="text" class="form-control" id="stu_dr_no" name="stu_dr_no" placeholder="Enter DR Number" [disabled]="lockDrNumber" #stu_dr_no="ngModel" [(ngModel)]="info_obj.stu_dr_no" required />
-                        <div class="alert alert-danger " *ngIf="stu_dr_no.touched && stu_dr_no.invalid">
-                            <p style="text-align: center;">Student DR Number can't be blank.</p>
-                        </div>
-                </div>
-
-                <div class="col-6">
-                    <re-captcha (resolved)="resolved($event)" #captchaRef="reCaptcha" (error)="errorCaptcha($event)" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></re-captcha>
-                </div>
-                <div class="col-12" style="margin-top: 15px;text-align:center;color:red;" *ngIf="error">
-                    <p style="text-align: center;">Student Record Not Found</p>
-                </div>
-                <div class="col-12" style="margin-top: 15px;">
-                    <button type="submit" class="btn btn-primary ms-2" [disabled]="f.invalid || !info_obj.stu_dr_no || !captcha.validated" (click)="sendOTP()">Get Detail</button>
-                </div>
+      <h2 class="pb-3 m-0">Student DR Number</h2>
+      <form #f="ngForm" novalidate autocomplete="off" *ngIf="info_obj">
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-4" style="text-align: -moz-right;">
+            <ng-select [items]="feeTypes" bindLabel="name" bindValue="id" [(ngModel)]="selectedFees"
+              (change)="onchange($event)" placeholder="Select Fee Type" [ngModelOptions]="{standalone: true}">
+            </ng-select>
+          </div>
+          <div class="col-4" style="text-align: -moz-right;">
+            <ng-select [items]="allFinancialBasedonFee" bindLabel="financial_year" bindValue="financial_year"
+              [(ngModel)]="selectedFinancialYear" placeholder="Select Financial Year"  (change)="onFinancialchange($event)"
+              [ngModelOptions]="{standalone: true}">
+            </ng-select>
+          </div>
+          <div class="col-2"></div>
+        </div>
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-4" style="text-align: -moz-right;">
+            <input type="text" class="form-control" id="stu_dr_no" name="stu_dr_no" placeholder="Enter DR Number"
+              [disabled]="lockDrNumber" #stu_dr_no="ngModel" [(ngModel)]="info_obj.stu_dr_no" required  oninput="this.value = this.value.replace(/[^0-9]/g,'');"     />
+            <div class="alert alert-danger " *ngIf="stu_dr_no.touched && stu_dr_no.invalid">
+              <p style="text-align: center;">Student DR Number can't be blank.</p>
             </div>
+          </div>
 
-          </form>
-      </div>
+          <div class="col-4">
+            <re-captcha (resolved)="resolved($event)" #captchaRef="reCaptcha" (error)="errorCaptcha($event)"
+              siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></re-captcha>
+          </div>
+          <div class="col-2"></div>
+          <div class="col-12" style="margin-top: 15px;text-align:center;color:red;" *ngIf="error">
+            <p style="text-align: center;">Student Record Not Found</p>
+          </div>
+          <div class="col-12" style="margin-top: 15px;">
+            <button type="submit" class="btn btn-primary ms-2"
+              [disabled]="f.invalid || !info_obj.stu_dr_no || !captcha.validated ||!selectedFees||!selectedFinancialYear" (click)="sendOTP()">Get
+              Detail</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
 
   </div>
 </div>
@@ -57,219 +76,244 @@
   <div class="container">
 
 
-      <div class="section-back-color p-3">
+    <div class="section-back-color p-3">
 
-          <div class="section-back-white p-3">
+      <div class="section-back-white p-3">
 
-              <div class="row">
-
-
-                      <div class="col-6">
-                          <div class="row">
-                              <div class="col-6">
-                                  <h5>Name</h5>
-                                  <span>:</span>
-                              </div>
-
-                              <div class="col-6">
-                                  <p>{{info_Detail?.studentInfo?.stu_first_name}} {{info_Detail?.studentInfo?.stu_last_name}}</p>
-                              </div>
-                          </div>
-                      </div>
-
-                      <div class="col-6">
-                          <div class="row">
-                              <div class="col-6">
-                                  <h5>PARENTS NAME</h5>
-                                  <span>:</span>
-                              </div>
-
-                              <div class="col-6">
-                                  <p>{{info_Detail?.studentInfo?.stu_father_name}}</p>
-                              </div>
-                          </div>
-                      </div>
-
-                      <hr>
-
-                      <div class="col-6">
-                          <div class="row">
-                              <div class="col-6">
-                                  <h5>Class Name</h5>
-                                  <span>:</span>
-                              </div>
-
-                              <div class="col-6">
-                                  <p>{{info_Detail?.studentInfo?.className}}</p>
-                              </div>
-                          </div>
-                      </div>
-
-                      <div class="col-6">
-                          <div class="row">
-                              <div class="col-6">
-                                  <h5>SECTION</h5>
-                                  <span>:</span>
-                              </div>
-
-                              <div class="col-6">
-                                  <p>{{info_Detail?.studentInfo?.t_sec_section_name}}</p>
-                              </div>
-
-                          </div>
-                      </div>
-
-                      <hr>
-
-                      <div class="col-6">
-                          <div class="row">
-                              <div class="col-6">
-                                  <h5>PARENTS MOBILE NO</h5>
-                                  <span>:</span>
-                              </div>
-
-                              <div class="col-6">
-                                  <p>{{info_Detail?.studentInfo?.stu_phone_number }}</p>
-                              </div>
-
-                          </div>
-                      </div>
+        <div class="row">
 
 
-
+          <div class="col-6">
+            <div class="row">
+              <div class="col-6">
+                <h5>Name</h5>
+                <span>:</span>
               </div>
 
+              <div class="col-6">
+                <p>{{info_Detail?.studentInfo?.stu_first_name}} {{info_Detail?.studentInfo?.stu_last_name}}</p>
+              </div>
+            </div>
           </div>
+
+          <div class="col-6">
+            <div class="row">
+              <div class="col-6">
+                <h5>PARENTS NAME</h5>
+                <span>:</span>
+              </div>
+
+              <div class="col-6">
+                <p>{{info_Detail?.studentInfo?.stu_father_name}}</p>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="col-6">
+            <div class="row">
+              <div class="col-6">
+                <h5>Class Name</h5>
+                <span>:</span>
+              </div>
+
+              <div class="col-6">
+                <p>{{info_Detail?.studentInfo?.className}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="row">
+              <div class="col-6">
+                <h5>SECTION</h5>
+                <span>:</span>
+              </div>
+
+              <div class="col-6">
+                <p>{{info_Detail?.studentInfo?.t_sec_section_name}}</p>
+              </div>
+
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="col-6">
+            <div class="row">
+              <div class="col-6">
+                <h5>PARENTS MOBILE NO</h5>
+                <span>:</span>
+              </div>
+
+              <div class="col-6">
+                <p>{{info_Detail?.studentInfo?.stu_phone_number }}</p>
+              </div>
+
+            </div>
+          </div>
+
+
+
+        </div>
+
       </div>
+    </div>
 
   </div>
 </div>
 
 <div class="fees" *ngIf="showTable && info_Detail.studentInfo">
   <div class="container">
-      <div class="section-back-color px-3 ">
+    <div class="section-back-color px-3 ">
 
-          <div class="section-back-white p-2">
-              <h2 class="text-center">FEES</h2>
-          </div>
-
+      <div class="section-back-white p-2">
+        <h2 class="text-center">FEES</h2>
       </div>
+
+    </div>
   </div>
 </div>
 
 <div class="fees-detail" *ngIf="showTable && info_Detail.studentInfo">
   <div class="container">
-      <div class="section-back-color p-3">
+    <div class="section-back-color p-3">
 
-          <div class="section-back-white text-center p-3 ">
-              <div class="row  px-3">
+      <div class="section-back-white text-center p-3 ">
+        <div class="row  px-3">
 
-                  <div class="col-1">
-                    <input type="checkbox" [(ngModel)]="isMasterSel" name="list_name" value="h1" (change)="checkUncheckAll()" />
-                  </div>
+          <div class="col-1" *ngIf="selectedFees =='N'">
+            <input type="checkbox" [(ngModel)]="isMasterSel" name="list_name" value="h1" (change)="checkUncheckAll()" />
+          </div>
 
-                  <div class="col-3">
-                      <h3>Month</h3>
-                  </div>
+          <div class="col-3">
+            <h3>Month</h3>
+          </div>
 
-                  <div class="col-3">
-                      <h3>Amount</h3>
-                  </div>
+          <div class="col-3">
+            <h3>Amount</h3>
+          </div>
 
-                  <div class="col-3">
-                      <h3>Fine</h3>
-                  </div>
+          <div class="col-3">
+            <h3>{{selectedFees =='N' ? "Fine" : "Areer Fine"}}</h3>
+          </div>
 
-                  <div class="col-2">
-                      <h3>Status</h3>
-                  </div>
-
-
-                  <hr class="mt-2" style="height: 1px; opacity: 1; color: #000;" >
-
-              </div>
-
-              <div class="row  px-3" *ngFor="let summary of info_Detail?.feesSummary; let i=index">
-
-                  <div class="col-1">
-                    <input type="checkbox" [(ngModel)]="summary.isSelected" name="list_name" value="{{summary.feeDate}}" (change)="isAllSelected()" />
-                  </div>
-
-                  <div class="col-3">
-                      <h4>{{summary.feeDate}}</h4>
-                  </div>
-
-                  <div class="col-3">
-                      <h4>{{summary.paidFeesAmount ? summary.paidFeesAmount : summary.feesAmount}}</h4>
-                  </div>
-
-                  <div class="col-3">
-                      <h4>{{summary.penalty ? summary.penalty : "-"}}</h4>
-                  </div>
-
-                  <div class="col-2">
-                    <h4 *ngIf="summary.paid == 1">Paid</h4>
-                    <h4 *ngIf="summary.paid == 0">Unpaid</h4>
-
-                  </div>
-                  <hr class="mt-2 ">
+          <div class="col-2">
+            <h3>Status</h3>
+          </div>
 
 
+          <hr class="mt-2" style="height: 1px; opacity: 1; color: #000;">
 
-              </div>
+        </div>
 
+        <div class="row  px-3" *ngFor="let summary of info_Detail?.feesSummary; let i=index">
 
-            </div>
+          <div class="col-1" *ngIf="selectedFees =='N'">
+            <input type="checkbox" *ngIf="!summary.paid" [(ngModel)]="summary.isSelected" name="list_name" value="{{summary.feeDate}}"
+              (change)="isAllSelected()" />
+          </div>
 
-            <div class="row pt-2">
-              <div class="col-6 pt-2"  style="text-align: -moz-left;">
-                <button type="submit" class="btn btn-primary" [disabled]="!selectedTotalPayment" (click)="initiatePayment()">Pay Now <br> {{selectedTotalPayment ? selectedTotalPayment : ''}}</button>
-              </div>
+          <div class="col-3">
+            <h4>{{summary.feeDate}}</h4>
+          </div>
 
-              <div class="col-6">
-                  <div class="table">
-                      <table>
-                          <tbody>
-                              <tr>
-                                  <th>Total Fees :</th>
-                                  <td>{{info_Detail?.totalFees}}</td>
-                                </tr>
-                                <tr>
-                                    <th>Total Paid Fees :</th>
-                                    <td>{{info_Detail?.totalPaidFees}}</td>
-                                </tr>
-                                <tr>
-                                    <th>Total Net Pending Fees :</th>
-                                    <td>{{info_Detail?.totalUnpaidFees}}</td>
-                                </tr>
+          <div class="col-3">
+            <h4>{{summary.paidFeesAmount ? summary.paidFeesAmount : summary.feesAmount}}</h4>
+          </div>
 
-                                <tr>
-                                    <th>Total Fine :</th>
-                                    <td>{{info_Detail?.totalPenalty}}</td>
-                                </tr>
-                                <tr>
-                                  <th>Total Pending Fees :</th>
-                                  <td>{{info_Detail?.totalPendingFees}}</td>
-                              </tr>
+          <div class="col-3">
+            <h4>{{summary.penalty ? summary.penalty : "-"}}</h4>
+          </div>
 
-                          </tbody>
+          <div class="col-2">
+            <h4 *ngIf="summary.paid == 1">Paid</h4>
+            <h4 *ngIf="summary.paid == 0">Unpaid</h4>
 
-                      </table> <br>
+          </div>
+          <hr class="mt-2 ">
 
 
 
-                  </div>
+        </div>
 
-            </div>
 
+      </div>
+
+      <div class="row pt-2">
+        <div class="col-6 pt-2" style="text-align: -moz-left;">
+          <button *ngIf="selectedFees == 'A'" type="submit"
+                    class="btn btn-primary" [disabled]="!selectedTotalPayment" (click)="initiatePayment()">Pay
+                    Now {{selectedTotalPayment}}</button>
+          <table *ngIf="selectedFees =='N' && selectedFeesSummary.length > 0">
+            <tbody>
+              <tr>
+                <td>Month</td>
+                <td>Fees</td>
+                <td>Penalty</td>
+                <td>Sub Total</td>
+              </tr>
+              <tr *ngFor="let summary of selectedFeesSummary; let i=index">
+                <td>{{summary.feeDate}}</td>
+                <td>{{summary.feesAmount}}</td>
+                <td>{{summary.penalty ? summary.penalty : '-'}}</td>
+                <td>{{summary.totalFeesNeedstoPay}}</td>
+              </tr>
+
+              <tr>
+                <td colspan="2">Total</td>
+                <td colspan="2">{{selectedTotalPayment ? selectedTotalPayment : ''}} <br> <button type="submit"
+                    class="btn btn-primary" [disabled]="!selectedTotalPayment" (click)="initiatePayment()">Pay
+                    Now</button></td>
+
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <div class="col-6">
+          <div class="table">
+            <table>
+              <tbody>
+                <tr>
+                  <th>Total Fees :</th>
+                  <td>{{info_Detail?.totalFees}}</td>
+                </tr>
+                <tr>
+                  <th>Total Paid Fees :</th>
+                  <td>{{info_Detail?.totalPaidFees}}</td>
+                </tr>
+                <tr>
+                  <th>Total Net Pending Fees :</th>
+                  <td>{{info_Detail?.totalUnpaidFees}}</td>
+                </tr>
+
+                <tr>
+                  <th>Total Fine :</th>
+                  <td>{{info_Detail?.totalPenalty}}</td>
+                </tr>
+                <tr>
+                  <th>Total Pending Fees :</th>
+                  <td>{{info_Detail?.totalPendingFees}}</td>
+                </tr>
+
+              </tbody>
+
+            </table> <br>
 
 
 
           </div>
 
+        </div>
+
+
+
+
       </div>
+
+    </div>
   </div>
 </div>
-
-
-

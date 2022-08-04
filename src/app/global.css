@@ -4724,7 +4724,7 @@ textarea.form-control-lg {
   color: #842029;
   background-color: #f8d7da;
   border-color: #f5c2c7;
-  width: 50%;
+  width: 100%;
   height: 50px;
 }
 .alert-danger p{
@@ -7300,7 +7300,7 @@ textarea.form-control-lg {
 
 .text-center {
   text-align: center !important;
-  
+
 }
 
 .text-decoration-none {

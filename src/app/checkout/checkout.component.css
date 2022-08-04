@@ -14,6 +14,16 @@ li{
   list-style: none;
 }
 
+.student-number-text input {
+  width: 100% !important;
+  margin-top: 30px;
+}
+
+.amount {
+  margin-top: 30px;
+}
+
+
 .logo {
   background-color: #151991;
 }
@@ -121,6 +131,3 @@ th{
   margin: 0 7rem;
 }
 
-.student-number-text input {
-  width: 100% !important;
-}
