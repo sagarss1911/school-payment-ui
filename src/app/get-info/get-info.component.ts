@@ -30,7 +30,7 @@ export class GetInfoComponent implements OnInit {
   selectedFinancialYear
   selectedFeesSummary = []
   bdPayment : any;
-  feeTypes = [{ id: "A", name: "Arrer Fees" }, { id: "N", name: "Normal Fees" }]
+  feeTypes = [{ id: "A", name: "Arrear Fees" }, { id: "N", name: "Normal Fees" }]
   @ViewChild('captchaRef') captchaRef: RecaptchaComponent;
   constructor(
     private getTextService: GetTextService,
@@ -138,7 +138,7 @@ export class GetInfoComponent implements OnInit {
     this.getTextService.processPayment(params).subscribe((res: any) => {
       this.loading = false;
       if (res.status == 200 && res.data) {
-        console.log(res.data)
+
         this.router.navigate(['/checkout/'+res.data]);
 
       }

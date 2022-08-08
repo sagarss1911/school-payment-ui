@@ -134,7 +134,8 @@ th{
   font-size: 40px;
 }
 .student-number-text button {
-  background: #FF0000 ;
+  background: linear-gradient(to right, #459E4C 0%, #4CA2C5 100%);
+  border: none;
   color: #fff;
   border: none;
   font-size: 16px;

@@ -11,10 +11,11 @@
 <div class="student-number mt-3">
   <div class="container">
 
-      <div class="section-back-color faild student-number-text text-center py-3">
+      <div class="section-back-color faild student-number-text text-center py-3" *ngIf="transaction_details.total != 0">
           <img width="100" src="assets/success.png" alt="">
           <h2>Payment Successful</h2>
-          <p class="tnk">Thank You</p>
+
+          <p class="tnk" *ngIf="transaction_details">Please note your reference id: {{transaction_id}}</p>
           <button class="go-home" (click)="goBackHome()">Go To Home</button>
 
       </div>

@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GetInfoComponent } from './get-info/get-info.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+import { PaymentErrorComponent } from './payment-error/payment-error.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -21,6 +23,8 @@ import { NgxLoadingModule } from 'ngx-loading';
     AppComponent,
     GetInfoComponent,
     CheckoutComponent,
+    PaymentSuccessComponent,
+    PaymentErrorComponent,
     CommonHelper,
     ToastMessageComponent,
 

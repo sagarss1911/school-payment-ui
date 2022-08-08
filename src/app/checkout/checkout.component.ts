@@ -30,7 +30,7 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.transaction_id = this.activatedRoute.snapshot.paramMap.get('transaction_id') ? this.activatedRoute.snapshot.paramMap.get('transaction_id') : "";
-    console.log(this.transaction_id)
+
     if(!this.transaction_id)
     {
       this.router.navigate(['']);
@@ -42,21 +42,6 @@ export class CheckoutComponent implements OnInit {
   getPaymentDetails() {
     let params = {
       transaction_id:this.transaction_id
-    }
-    this.loading = true;
-    this.getTextService.getTransactionDetails(params).subscribe((res: any) => {
-      this.loading = false;
-      if (res.status == 200 && res.data) {
-  this.transaction_details =res.data
-      }
-    }, (error) => {
-      this.loading = false;
-      this.commonHelper.showError(error);
-    })
-  }
-  getTest() {
-    let params = {
-      "msg": "STEWARTSCH|l66h64xuadns2bkzkbq|WHD41308203597|221065498815|00000001.00|HD4|NA|10|INR|DIRECT|NA|NA|0.00|29-07-2022 19:31:01|0300|NA|sagar|sagarss191@gmail.com|9377690348|NA|NA|NA|NA|NA|Transaction successful|754072B5D856D51150E83434BBE4372AE8392DA8931CF5F5BE00E79826E5C88D"
     }
     this.loading = true;
     this.getTextService.getTransactionDetails(params).subscribe((res: any) => {

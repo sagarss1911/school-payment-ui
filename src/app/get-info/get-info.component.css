@@ -124,3 +124,28 @@ th{
 .student-number-text input {
   width: 100% !important;
 }
+
+.section-back-color-green {
+  border-top: 5px solid green;
+  background-color: #F0F0F4;
+}
+
+.section-back-color-org {
+  border-top: 5px solid #F39C12;
+  background-color: #F0F0F4;
+}
+
+.btn-primary {
+  background: linear-gradient(to right, #459E4C 0%, #4CA2C5 100%);
+  border: none;
+}
+
+.btn:disabled, .btn.disabled, fieldset:disabled .btn {
+  pointer-events: none;
+  opacity: 1;
+}
+
+table{
+  background: #fff;
+  margin-top: 15px;
+}
