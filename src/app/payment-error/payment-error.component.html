@@ -1,4 +1,4 @@
-
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop:true,primaryColour:'#005eff',secondaryColour:'#005eff',tertiaryColour:'#005eff'}"></ngx-loading>
 <div class="top-logo">
   <div class="logo text-center">
     <img width="700px" class="img-fluid my-3" src="assets/Stewart-school-Cuttack-Logo-1-1.png"
@@ -16,10 +16,10 @@
           <p *ngIf="transaction_details">Please note your reference id: {{transaction_id}}</p>
           <div class="payment-btn">
               <div class="row">
-                  <div class="col-6">
+                  <div class="col-lg-6 col-sm-12 pt-3">
                       <button class="retry" (click)="retryPayment()">Retry</button>
                   </div>
-                  <div class="col-6">
+                  <div class="col-lg-6 col-sm-12 pt-3">
                       <button class="go-home" (click)="goBackHome()">Go To Home</button>
                   </div>
               </div>

@@ -19,7 +19,6 @@
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
     "@ng-select/ng-select": "^8.1.1",
-    "crypto-js": "^4.1.1",
     "ng-recaptcha": "^9.0.0",
     "ngx-loading": "^13.0.0",
     "rxjs": "~7.5.0",

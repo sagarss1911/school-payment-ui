@@ -150,3 +150,9 @@ th{
 .go-home {
   width: 150px;
 }
+
+@media only screen and (max-width: 991px) {
+  .payment-btn {
+    margin-left: 0px !important;
+  }
+}

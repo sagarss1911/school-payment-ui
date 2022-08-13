@@ -3,7 +3,6 @@ import { GetTextService } from 'src/app/services/getText.service';
 import { CommonHelper } from 'src/app/helpers/common.helper';
 import { ToastMessageService } from 'src/app/services/toast-message.service';
 import { RecaptchaComponent } from 'ng-recaptcha'
-import { BilldeskService } from 'src/app/services/billdesk.service';
 import {  Router,ActivatedRoute } from '@angular/router';
 declare var bdPayment: any;
 import { environment } from "../../environments/environment";
@@ -20,7 +19,6 @@ export class CheckoutComponent implements OnInit {
   @ViewChild('captchaRef') captchaRef: RecaptchaComponent;
   constructor(
     private getTextService: GetTextService,
-    private billdeskService: BilldeskService,
     private router : Router,
     private commonHelper: CommonHelper,
     private _toastMessageService: ToastMessageService,

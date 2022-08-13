@@ -149,3 +149,33 @@ table{
   background: #fff;
   margin-top: 15px;
 }
+
+
+.mobileonly {
+  display:none !important;
+}
+@media only screen and (max-width: 991px) {
+  .desktoponly {
+    display:none !important;
+  }
+  .mobileonly {
+    display:block !important;
+  }
+  .bottom-table-total table {
+    width: 100% !important;
+  }
+
+  .bottom-table-total thead, tbody, tfoot, tr, td, th{
+    width: 100% !important;
+  }
+
+  .section-back-white p {
+    padding: 5px 0 0 0;
+  }
+
+  .table-reverse {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+

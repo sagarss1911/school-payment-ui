@@ -26,24 +26,24 @@
 
       <h2 class="pb-3 m-0">Student DR Number</h2>
       <form #f="ngForm" novalidate autocomplete="off" *ngIf="info_obj">
-        <div class="row">
-          <div class="col-2"></div>
-          <div class="col-4" style="text-align: -moz-right;">
+        <div class="row px-2">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-4 col-sm-12" style="text-align: -moz-right;">
             <ng-select [items]="feeTypes" bindLabel="name" bindValue="id" [(ngModel)]="selectedFees"
               (change)="onchange($event)" placeholder="Select Fee Type" [ngModelOptions]="{standalone: true}">
             </ng-select>
           </div>
-          <div class="col-4" style="text-align: -moz-right;">
+          <div class="col-lg-4 col-sm-12" style="text-align: -moz-right;">
             <ng-select [items]="allFinancialBasedonFee" bindLabel="financial_year" bindValue="financial_year"
               [(ngModel)]="selectedFinancialYear" placeholder="Select Financial Year"  (change)="onFinancialchange($event)"
               [ngModelOptions]="{standalone: true}">
             </ng-select>
           </div>
-          <div class="col-2"></div>
+          <div class="col-lg-2"></div>
         </div>
-        <div class="row">
-          <div class="col-2"></div>
-          <div class="col-4" style="text-align: -moz-right;">
+        <div class="row px-2" >
+          <div class="col-lg-2"></div>
+          <div class="col-lg-4 col-sm-12" style="text-align: -moz-right;">
             <input type="text" class="form-control" id="stu_dr_no" name="stu_dr_no" placeholder="Enter DR Number"
               [disabled]="lockDrNumber" #stu_dr_no="ngModel" [(ngModel)]="info_obj.stu_dr_no" required  oninput="this.value = this.value.replace(/[^0-9]/g,'');"     />
             <div class="alert alert-danger " *ngIf="stu_dr_no.touched && stu_dr_no.invalid">
@@ -51,16 +51,16 @@
             </div>
           </div>
 
-          <div class="col-4">
+          <div class="col-lg-4 col-sm-12 pt-2 text-center">
             <re-captcha (resolved)="resolved($event)" #captchaRef="reCaptcha" (error)="errorCaptcha($event)"
-              siteKey="6LckXlQhAAAAAAFluKBA1rBFSfQ5nY2jr_TcWI_D"></re-captcha>
+              siteKey="6LckXlQhAAAAAAFluKBA1rBFSfQ5nY2jr_TcWI_D" style="display: block ruby;"></re-captcha>
               <!-- 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI-->
           </div>
-          <div class="col-2"></div>
-          <div class="col-12" style="margin-top: 15px;text-align:center;color:red;" *ngIf="error">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-12" style="margin-top: 15px;text-align:center;color:red;" *ngIf="error">
             <p style="text-align: center;">Student Record Not Found</p>
           </div>
-          <div class="col-12" style="margin-top: 15px;">
+          <div class="col-lg-12" style="margin-top: 15px;">
             <button type="submit" class="btn btn-primary ms-2"
               [disabled]="f.invalid || !info_obj.stu_dr_no || !captcha.validated ||!selectedFees||!selectedFinancialYear" (click)="sendOTP()">Get
               Detail</button>
@@ -81,59 +81,59 @@
 
       <div class="section-back-white p-3">
 
-        <div class="row">
+        <div class="row desktoponly">
 
 
-          <div class="col-6">
+          <div class="col-lg-6 col-sm-12">
             <div class="row">
-              <div class="col-6">
+              <div class="col-lg-6 col-sm-12">
                 <h5>Name</h5>
                 <span>:</span>
               </div>
 
-              <div class="col-6">
-                <p>{{info_Detail?.studentInfo?.stu_first_name}} {{info_Detail?.studentInfo?.stu_last_name}}</p>
+              <div class="col-lg-6 col-sm-12">
+                <p><b>{{info_Detail?.studentInfo?.stu_first_name}} {{info_Detail?.studentInfo?.stu_last_name}}</b></p>
               </div>
             </div>
           </div>
 
-          <div class="col-6">
+          <div class="col-lg-6 col-sm-12">
             <div class="row">
-              <div class="col-6">
+              <div class="col-lg-6 col-sm-12">
                 <h5>PARENTS NAME</h5>
                 <span>:</span>
               </div>
 
-              <div class="col-6">
-                <p>{{info_Detail?.studentInfo?.stu_father_name}}</p>
+              <div class="col-lg-6 col-sm-12">
+                <p><b>{{info_Detail?.studentInfo?.stu_father_name}}</b></p>
               </div>
             </div>
           </div>
 
           <hr>
 
-          <div class="col-6">
+          <div class="col-lg-6 col-sm-12">
             <div class="row">
-              <div class="col-6">
+              <div class="col-lg-6 col-sm-12">
                 <h5>Class Name</h5>
                 <span>:</span>
               </div>
 
-              <div class="col-6">
-                <p>{{info_Detail?.studentInfo?.className}}</p>
+              <div class="col-lg-6 col-sm-12">
+                <p><b>{{info_Detail?.studentInfo?.className}}</b></p>
               </div>
             </div>
           </div>
 
-          <div class="col-6">
+          <div class="col-lg-6 col-sm-12">
             <div class="row">
-              <div class="col-6">
+              <div class="col-lg-6 col-sm-12">
                 <h5>SECTION</h5>
                 <span>:</span>
               </div>
 
-              <div class="col-6">
-                <p>{{info_Detail?.studentInfo?.t_sec_section_name}}</p>
+              <div class="col-lg-6 col-sm-12">
+                <p><b>{{info_Detail?.studentInfo?.t_sec_section_name}}</b></p>
               </div>
 
             </div>
@@ -141,15 +141,15 @@
 
           <hr>
 
-          <div class="col-6">
+          <div class="col-lg-6 col-sm-12">
             <div class="row">
-              <div class="col-6">
+              <div class="col-lg-6 col-sm-12">
                 <h5>PARENTS MOBILE NO</h5>
                 <span>:</span>
               </div>
 
-              <div class="col-6">
-                <p>{{info_Detail?.studentInfo?.stu_phone_number }}</p>
+              <div class="col-lg-6 col-sm-12">
+                <p><b>{{info_Detail?.studentInfo?.stu_phone_number }}</b></p>
               </div>
 
             </div>
@@ -158,7 +158,23 @@
 
 
         </div>
-
+        <div class="row mobileonly">
+         <div class="col-lg-6 col-sm-12">
+          <h5>Name : <b>{{info_Detail?.studentInfo?.stu_first_name}} {{info_Detail?.studentInfo?.stu_last_name}}</b></h5>
+         </div>
+         <div class="col-lg-6 col-sm-12">
+          <h5>PARENTS NAME : <b>{{info_Detail?.studentInfo?.stu_father_name}}</b></h5>
+         </div>
+         <div class="col-lg-6 col-sm-12">
+          <h5>Class Name : <b>{{info_Detail?.studentInfo?.className}}</b></h5>
+         </div>
+         <div class="col-lg-6 col-sm-12">
+          <h5>SECTION : <b>{{info_Detail?.studentInfo?.t_sec_section_name}}</b></h5>
+         </div>
+         <div class="col-lg-6 col-sm-12">
+          <h5>PARENTS MOBILE NO : <b>{{info_Detail?.studentInfo?.stu_phone_number }}</b></h5>
+         </div>
+        </div>
       </div>
     </div>
 
@@ -170,7 +186,7 @@
     <div class="section-back-color px-3 ">
 
       <div class="section-back-white p-2">
-        <h2 class="text-center">FEES</h2>
+        <h2 class="text-center">PLEASE SELECT MONTH(S)</h2>
       </div>
 
     </div>
@@ -185,7 +201,7 @@
         <div class="row  px-3">
 
           <div class="col-1" *ngIf="selectedFees =='N'">
-            <input type="checkbox" [(ngModel)]="isMasterSel" name="list_name" value="h1" (change)="checkUncheckAll()" />
+            <!-- <input type="checkbox" [(ngModel)]="isMasterSel" name="list_name" value="h1" (change)="checkUncheckAll()" /> -->
           </div>
 
           <div class="col-3">
@@ -197,7 +213,7 @@
           </div>
 
           <div class="col-3">
-            <h3>{{selectedFees =='N' ? "Fine" : "Areer Fine"}}</h3>
+            <h3>{{selectedFees =='N' ? "Fine" : "Arrear Fine"}}</h3>
           </div>
 
           <div class="col-2">
@@ -242,8 +258,12 @@
 
       </div>
 
-      <div class="row pt-2">
-        <div class="col-6 " style="text-align: -moz-left;">
+
+
+      <div class="row table-reverse pt-2">
+
+
+        <div class="col-lg-6 col-sm-12  bottom-table-total" style="text-align: -moz-left;">
           <button *ngIf="selectedFees == 'A'" type="submit"
                     class="btn  btn-primary mt-2" [disabled]="!selectedTotalPayment" (click)="initiatePayment()">Pay
                     Now {{selectedTotalPayment}}</button>
@@ -252,7 +272,7 @@
               <tr>
                 <td>Month</td>
                 <td>Fees</td>
-                <td>Penalty</td>
+                <td>Fine</td>
                 <td>Sub Total</td>
               </tr>
               <tr *ngFor="let summary of selectedFeesSummary; let i=index">
@@ -274,7 +294,7 @@
 
         </div>
 
-        <div class="col-6">
+        <div class="col-lg-6 col-sm-12 bottom-table-total">
           <div class="table">
             <table>
               <tbody>
@@ -307,6 +327,8 @@
           </div>
 
         </div>
+
+
 
 
 
