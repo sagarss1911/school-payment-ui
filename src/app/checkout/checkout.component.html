@@ -29,7 +29,7 @@
           <div class="col-lg-2 col-sm-12 px-4"></div>
           <div class="col-lg-4 col-sm-12 px-4" style="text-align: -moz-right;">
             <input type="text" class="form-control" id="Parent Name" name="Parent Name" placeholder="Enter Parent Name"
-            #parent_name="ngModel" [(ngModel)]="transaction_details.parent_name" required    oninput="this.value = this.value.replace(/[^a-z.A-Z,_,-]/g,'');"/>
+            #parent_name="ngModel" [(ngModel)]="transaction_details.parent_name" required    oninput="this.value = this.value.replace(/[^a-z.A-Z,_,- ]/g,'');"/>
             <div class="alert alert-danger " *ngIf="parent_name.touched && parent_name.invalid">
              <p style="text-align: center;">Parent Name can't be blank.</p>
            </div>
